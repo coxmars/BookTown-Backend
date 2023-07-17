@@ -1,5 +1,6 @@
 package pe.todotic.bookstoreapi_s2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,6 +20,7 @@ public class SalesItem {
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     private Book book;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     private SalesOrder order;

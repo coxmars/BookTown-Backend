@@ -39,7 +39,7 @@ public class PaypalService {
     }
 
     public OrderResponse createOrder (SalesOrder salesOrder, String returnUrl, String cancelUrl) {
-        String url = String.format("%s/v1/oauth2/token/", PAYPAL_API_BASE);
+        String url = String.format("%s/v2/checkout/orders", PAYPAL_API_BASE);
 
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setIntent(OrderRequest.Intent.CAPTURE);
