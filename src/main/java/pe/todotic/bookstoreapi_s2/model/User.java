@@ -1,5 +1,6 @@
 package pe.todotic.bookstoreapi_s2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,6 +20,7 @@ public class User {
     @Column(name = "fullname")
     private String fullName;
     private String email;
+    @JsonIgnore
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -30,10 +32,12 @@ public class User {
     @PrePersist
     void initCreatedAt () {
         createdAt = LocalDateTime.now();
+        fullName = firstName + " " + lastName;
     }
 
     @PreUpdate
     void initUpdatedAt () {
         updatedAt = LocalDateTime.now();
+        fullName = firstName + " " + lastName;
     }
 }
